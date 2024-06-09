@@ -1,3 +1,4 @@
+import 'package:dokan/src/components/gradient.button.dart';
 import 'package:dokan/src/modules/auth/components/Icon.text.field.dart';
 import 'package:dokan/src/modules/auth/components/auth.button.dart';
 import 'package:dokan/src/modules/auth/components/auth.options.dart';
@@ -12,99 +13,73 @@ class SignUpBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          const Gap(30),
-          const _ProfilePicture(),
-          const Gap(30),
-          const IconTextFiled(hintText: 'Name', prefixIcon: Icons.person),
-          const Gap(10),
-          const IconTextFiled(
-              hintText: 'Email', prefixIcon: Icons.email_outlined),
-          const Gap(10),
-          const IconTextFiled(
-              hintText: 'Password', prefixIcon: Icons.lock_clock_outlined),
-          const Gap(10),
-          const IconTextFiled(
-              hintText: 'Confirm Password',
-              prefixIcon: Icons.lock_clock_outlined),
-          const Gap(40),
-          AuthButton(
-            label: 'Sign up',
-            onPressed: () {},
-          ),
-          const Gap(30),
-          const AuthOptoins(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                'Already have an account?',
-                style: TextStyle(color: Colors.grey),
-              ),
-              TextButton(
-                onPressed: ref.read(authTypeProvider.notifier).toggle,
-                child: const Text('Login'),
-              ),
-            ],
-          ),
-        ],
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Gap(30),
+        const GradientButton(),
+        const Gap(50),
+        const IconTextFiled(hintText: 'Name', prefixIcon: Icons.person),
+        const Gap(20),
+        const IconTextFiled(
+            hintText: 'Email', prefixIcon: Icons.email_outlined),
+        const Gap(20),
+        const IconTextFiled(
+            hintText: 'Password', prefixIcon: Icons.lock_clock_outlined),
+        const Gap(20),
+        const IconTextFiled(
+            hintText: 'Confirm Password',
+            prefixIcon: Icons.lock_clock_outlined),
+        const Gap(40),
+        AuthButton(
+          label: 'Sign up',
+          onPressed: () {},
+        ),
+        const Gap(30),
+        const AuthOptoins(),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'Already have an account?',
+              style: TextStyle(color: Colors.grey),
+            ),
+            TextButton(
+              onPressed: ref.read(authTypeProvider.notifier).toggle,
+              child: const Text('Login'),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
 
-class _ProfilePicture extends StatelessWidget {
-  const _ProfilePicture({super.key});
-
+class GradientButton extends StatelessWidget {
+  const GradientButton({super.key, this.icon, this.onPressed});
+  final IconData? icon;
+  final VoidCallback? onPressed;
   @override
   Widget build(BuildContext context) {
     return Material(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(60)),
       elevation: 4,
-      child: IconButton.filled(
+      child: IconButton(
         color: Colors.grey,
         style: IconButton.styleFrom(backgroundColor: Colors.white),
         onPressed: () {},
-        icon: Stack(
+        icon: const Stack(
           clipBehavior: Clip.none,
           children: [
-            const Padding(
-              padding: EdgeInsets.all(16.0),
+            Padding(
+              padding: EdgeInsets.all(34.0),
               child: Icon(FontAwesomeIcons.user),
-              // child: const Icon(Icons.person_outline),
             ),
             Positioned(
               bottom: -10,
               right: -10,
-              child: Container(
-                height: 30,
-                width: 30,
-                decoration: BoxDecoration(
-                  boxShadow: const [
-                    BoxShadow(
-                      blurRadius: 10,
-                      color: Colors.grey,
-                      offset: Offset(0, 3),
-                    ),
-                  ],
-                  borderRadius: BorderRadius.circular(20),
-                  gradient: const LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      Colors.deepOrangeAccent,
-                      Colors.red,
-                    ],
-                  ),
-                ),
-                child: const Icon(
-                  Icons.camera_alt_outlined,
-                  color: Colors.white,
-                  size: 18,
-                ),
+              child: GradiantIconButton(
+                iconData: Icons.camera_alt,
               ),
             )
           ],
@@ -113,20 +88,3 @@ class _ProfilePicture extends StatelessWidget {
     );
   }
 }
-      
-        // floatingActionButton: FloatingActionButton(
-        //   onPressed: () async {
-        //     String jsonString =
-        //         await rootBundle.loadString('assets/response.json');
-        //     final jsonData = jsonDecode(jsonString) as List;
-        //     final productList = jsonData.map((e) => Product.fromMap(e)).toList();
-        //     for (var p in productList) {
-        //       if (p.images != null && p.images!.isNotEmpty) {
-        //         for (var i in p.images!) {
-        //           print('url: $i');
-        //         }
-        //       }
-        //     }
-        //     print('image ${productList.first.images?.first}');
-        //   },
-        // ),

@@ -23,8 +23,9 @@ class AuthOptoins extends StatelessWidget {
             style: buttonStyle,
             onPressed: () {},
             icon: SvgPicture.asset(
+              fit: BoxFit.cover,
               'assets/icons/facebook.svg',
-              height: 20,
+              height: 30,
             ),
           ),
         ),
@@ -34,12 +35,13 @@ class AuthOptoins extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
           elevation: 2,
-          child: IconButton.filled(
+          child: IconButton(
             style: buttonStyle,
             onPressed: () {},
             icon: SvgPicture.asset(
+              fit: BoxFit.cover,
               'assets/icons/google.svg',
-              height: 20,
+              height: 30,
             ),
           ),
         ),

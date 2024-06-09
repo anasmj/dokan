@@ -15,69 +15,67 @@ class SignInBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SvgPicture.asset(
-            'assets/icons/dokan.svg',
-            height: 40,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SvgPicture.asset(
+          'assets/icons/dokan.svg',
+          height: 40,
+        ),
+        const Gap(80),
+        Text(
+          'Sign in',
+          style: context.text.titleLarge!.copyWith(
+            fontWeight: FontWeight.bold,
           ),
-          const Gap(40),
-          Text(
-            'Sign in',
-            style: context.text.titleLarge!.copyWith(
-              fontWeight: FontWeight.bold,
+        ),
+        const Gap(30),
+        const IconTextFiled(
+          hintText: 'Email',
+          prefixIcon: Icons.mail_outline_outlined,
+        ),
+        const Gap(10),
+        const IconTextFiled(
+          hintText: 'Password',
+          prefixIcon: Icons.lock_outline,
+        ),
+        Align(
+          alignment: Alignment.centerRight,
+          child: TextButton(
+            style: TextButton.styleFrom(
+              padding: EdgeInsets.zero,
+            ),
+            onPressed: () {},
+            child: const Text(
+              'Forgot Passord? ',
+              style: TextStyle(
+                color: Colors.grey,
+              ),
             ),
           ),
-          const Gap(30),
-          const IconTextFiled(
-            hintText: 'Email',
-            prefixIcon: Icons.mail_outline_outlined,
-          ),
-          const Gap(10),
-          const IconTextFiled(
-            hintText: 'Password',
-            prefixIcon: Icons.lock_outline,
-          ),
-          Align(
-            alignment: Alignment.centerRight,
-            child: TextButton(
-              style: TextButton.styleFrom(
-                padding: EdgeInsets.zero,
-              ),
-              onPressed: () {},
-              child: const Text(
-                'Forgot Passord? ',
-                style: TextStyle(
-                  color: Colors.grey,
-                ),
-              ),
+        ),
+        const Gap(30),
+        AuthButton(
+          label: 'Login',
+          onPressed: () => ref.read(userProvider.notifier).update = User(),
+        ),
+        const Gap(50),
+        const AuthOptoins(),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: TextButton(
+            style: TextButton.styleFrom(
+              padding: EdgeInsets.zero,
+              // padding: EdgeInsets.symmetric(horizontal: 10),
+            ),
+            onPressed: ref.read(authTypeProvider.notifier).toggle,
+            child: const Text(
+              'Create New Account',
+              style: TextStyle(color: Colors.grey),
             ),
           ),
-          const Gap(30),
-          AuthButton(
-            label: 'Login',
-            onPressed: () => ref.read(userProvider.notifier).update = User(),
-          ),
-          const Gap(50),
-          const AuthOptoins(),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: TextButton(
-              style: TextButton.styleFrom(
-                padding: EdgeInsets.zero,
-                // padding: EdgeInsets.symmetric(horizontal: 10),
-              ),
-              onPressed: ref.read(authTypeProvider.notifier).toggle,
-              child: const Text(
-                'Create New Account',
-                style: TextStyle(color: Colors.grey),
-              ),
-            ),
-          )
-        ],
-      ),
+        )
+      ],
     );
   }
 }

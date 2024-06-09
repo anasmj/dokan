@@ -1,4 +1,3 @@
-import 'package:dokan/src/modules/auth/components/sign.body.dart';
 import 'package:dokan/src/modules/auth/provider/user.provider.dart';
 import 'package:dokan/src/modules/home/view/app.home.dart';
 import 'package:dokan/src/theme/light.theme.dart';
@@ -21,6 +20,7 @@ class MainApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: lightTheme,
         home: const DokanApp(),
+        // home: const AppHome(),
       ),
     );
   }
