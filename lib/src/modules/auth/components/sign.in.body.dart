@@ -18,6 +18,7 @@ class SignInBody extends ConsumerWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        const Gap(200),
         SvgPicture.asset(
           'assets/icons/dokan.svg',
           height: 40,

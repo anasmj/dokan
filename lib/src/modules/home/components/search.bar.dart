@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 
+import 'bottom.sheet.body.dart';
+
 class AppSearchBar extends StatelessWidget {
   const AppSearchBar({super.key});
 
@@ -26,11 +28,13 @@ class AppSearchBar extends StatelessWidget {
             const Text('Sort By'),
             const Gap(8),
             IconButton(
-                style: IconButton.styleFrom(
-                  padding: EdgeInsets.zero,
-                ),
-                onPressed: () {},
-                icon: const Icon(Icons.keyboard_arrow_down)),
+              style: IconButton.styleFrom(
+                padding: EdgeInsets.zero,
+              ),
+              onPressed: () async =>
+                  context.showBottomModal(const ProductFilterOptionWidget(),),
+              icon: const Icon(Icons.keyboard_arrow_down),
+            ),
             const Icon(
               FontAwesomeIcons.list,
               size: 18,

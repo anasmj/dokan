@@ -14,4 +14,12 @@ extension ContextExt on BuildContext {
           ),
         ),
       );
+
+  Future showBottomModal(Widget body) async => showModalBottomSheet(
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+        context: this,
+        builder: (_) => body,
+      );
+  double get width => MediaQuery.of(this).size.width;
+  double get height => MediaQuery.of(this).size.height;
 }

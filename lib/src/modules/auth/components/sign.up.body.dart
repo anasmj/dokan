@@ -16,7 +16,7 @@ class SignUpBody extends ConsumerWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Gap(30),
+        const Gap(100),
         const GradientButton(),
         const Gap(50),
         const IconTextFiled(hintText: 'Name', prefixIcon: Icons.person),

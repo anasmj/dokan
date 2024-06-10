@@ -9,7 +9,6 @@ import 'package:gap/gap.dart';
 
 class AppHome extends ConsumerWidget {
   const AppHome({super.key});
-
   @override
   Widget build(BuildContext context, ref) {
     final selectedNav = ref.watch(navProvider);
@@ -26,9 +25,18 @@ class AppHome extends ConsumerWidget {
     }
     return Scaffold(
       body: body,
-      floatingActionButton: const GradiantIconButton(
+      floatingActionButton: GradiantIconButton(
         iconData: FontAwesomeIcons.magnifyingGlass,
         size: 60,
+        onPressed: () async {
+          // final jsonString =
+          //     await rootBundle.loadString('assets/response.json');
+          // final jsonData = jsonDecode(jsonString) as List;
+          // final products = jsonData.map((e) => Product.fromMap(e)).toList();
+          // for (var p in products) {
+          //   print(p.images?.first?.src);
+          // }
+        },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: const NavOptions(),

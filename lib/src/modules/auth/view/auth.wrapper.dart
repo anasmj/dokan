@@ -1,4 +1,4 @@
-import 'package:dokan/src/modules/auth/components/sign.body.dart';
+import 'package:dokan/src/modules/auth/components/sign.in.body.dart';
 import 'package:dokan/src/modules/auth/components/sign.up.body.dart';
 import 'package:dokan/src/modules/auth/provider/auth.type.provider.dart';
 import 'package:flutter/material.dart';
@@ -9,11 +9,14 @@ class AuthenticatePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
+    
     final isLoginSelected = ref.watch(authTypeProvider) == AuthType.login;
     return Scaffold(
         body: Padding(
       padding: const EdgeInsets.all(8),
-      child: isLoginSelected ? const SignInBody() : const SignUpBody(),
+      child: SingleChildScrollView(
+        child: isLoginSelected ? const SignInBody() : const SignUpBody(),
+      ),
     ));
   }
 }
