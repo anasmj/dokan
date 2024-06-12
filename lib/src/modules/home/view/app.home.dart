@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:dokan/src/components/gradient.button.dart';
+import 'package:dokan/src/model/product.dart';
 import 'package:dokan/src/modules/home/providers/nav.bar.provider.dart';
 import 'package:dokan/src/modules/home/view/components/product.list.dart';
 import 'package:dokan/src/modules/user/view/user.setting.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
@@ -29,13 +33,11 @@ class AppHome extends ConsumerWidget {
         iconData: FontAwesomeIcons.magnifyingGlass,
         size: 60,
         onPressed: () async {
-          // final jsonString =
-          //     await rootBundle.loadString('assets/response.json');
-          // final jsonData = jsonDecode(jsonString) as List;
-          // final products = jsonData.map((e) => Product.fromMap(e)).toList();
-          // for (var p in products) {
-          //   print(p.images?.first?.src);
-          // }
+          final jsonString =
+              await rootBundle.loadString('assets/response.json');
+          final jsonData = jsonDecode(jsonString) as List;
+          final products = jsonData.map((e) => Product.fromMap(e)).toList();
+          print(products.length);
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

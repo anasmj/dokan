@@ -15,9 +15,9 @@ class Product {
   final String? type;
 
   final String? status;
-  final String? price;
-  final String? regularPrice;
-  final String? salePrice;
+  final double? price;
+  final double? regularPrice;
+  final double? salePrice;
 
   final bool? onSale;
   final int? totalSales;
@@ -27,7 +27,7 @@ class Product {
   final List<Download>? downloads;
   final String? weight;
   final int? ratingCount;
-  final String? averageRating;
+  final int? averageRating;
 
   final List<ImageData>? images;
 
@@ -68,9 +68,9 @@ class Product {
     bool? featured,
     String? description,
     String? sku,
-    String? price,
-    String? regularPrice,
-    String? salePrice,
+    double? price,
+    double? regularPrice,
+    double? salePrice,
     bool? onSale,
     bool? purchasable,
     int? totalSales,
@@ -81,7 +81,7 @@ class Product {
     bool? backordered,
     String? weight,
     int? ratingCount,
-    String? averageRating,
+    int? averageRating,
     List<ImageData>? images,
   }) {
     return Product(
@@ -109,8 +109,6 @@ class Product {
   }
 
   factory Product.fromMap(Map<String, dynamic> map) {
-    // print(
-    //     'price: ${map['price']} || regular : ${map['regular_price']} || sale : ${map['sale_price']} ');
     return Product(
       id: map['id'].toInt() as int?,
       name: map['name'] as String?,
@@ -120,9 +118,12 @@ class Product {
       dateModified: map['date_modified'] as String?,
       type: map['type'] as String?,
       status: map['status'] as String?,
-      price: map['price'] as String?,
-      regularPrice: map['regular_price'] as String?,
-      salePrice: map['sale_price'] as String?,
+      price: map['price'] != null ? double.tryParse(map['price']) : 0.00,
+      regularPrice: map['regular_price'] != null
+          ? double.tryParse(map['regular_price'] ?? 0.00)
+          : 0.00,
+      salePrice:
+          map['sale_price'] != null ? double.tryParse(map['sale_price']) : 0.00,
       onSale: map['on_sale'] as bool?,
       totalSales: map['total_sales'].toInt() as int?,
       virtual: map['virtual'] as bool?,
@@ -135,7 +136,7 @@ class Product {
           : null,
       weight: map['weight'] as String?,
       ratingCount: map['rating_count'].toInt() as int?,
-      averageRating: map['average_rating'] as String?,
+      averageRating: map['rating_count'].toInt() as int?,
     );
   }
 

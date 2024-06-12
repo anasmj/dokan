@@ -38,8 +38,9 @@ class ProductList extends ConsumerWidget {
           ),
         ),
       ],
-      body: ref.watch(productProvider).when(
+      body: ref.watch(productsProvider).when(
             data: (products) {
+              print(products.length);
               return GridView.builder(
                 itemCount: products.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -53,7 +54,12 @@ class ProductList extends ConsumerWidget {
                 ),
               );
             },
-            error: (e, s) => const SizedBox.shrink(),
+            error: (e, s) {
+              print(e);
+              return const SizedBox(
+                child: Text('Error'),
+              );
+            },
             loading: () => const Center(
               child: CircularProgressIndicator(),
             ),

@@ -8,6 +8,7 @@ class ProductCard extends StatelessWidget {
   final Product? product;
   @override
   Widget build(BuildContext context) {
+    // print(product?.totalSales);
     final imageUrl = product?.images?.first.src;
     return Card(
       elevation: 5,
@@ -39,27 +40,33 @@ class ProductCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                     product?.name ?? '',
                     style: const TextStyle(fontSize: 18),
                   ),
                   Row(
                     children: [
                       Text(
-                        '\$${product?.price}',
+                        '\$${product?.regularPrice ?? 0}',
                         style: context.text.titleLarge!.copyWith(
                           decoration: TextDecoration.lineThrough,
                           color: Colors.grey,
                         ),
                       ),
                       const Gap(10),
-                      Text(
-                        '\$2342',
-                        style: context.text.titleLarge!
-                            .copyWith(fontWeight: FontWeight.bold),
+                      Expanded(
+                        child: Text(
+                          '\$${product?.price ?? 0}',
+                          style: context.text.titleLarge!.copyWith(
+                            fontWeight: FontWeight.bold,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
                       ),
                     ],
                   ),
-                  const Ratings(count: 4),
+                  Ratings(count: product?.averageRating),
                 ],
               ),
             ),
@@ -76,7 +83,7 @@ class Ratings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: List.generate(5, (index) {
+      children: List.generate(6, (index) {
         return Icon(
           size: 18,
           Icons.star,
