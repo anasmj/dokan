@@ -8,6 +8,7 @@ import 'package:dokan/src/modules/user/view/user.setting.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 
@@ -41,7 +42,16 @@ class AppHome extends ConsumerWidget {
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: const NavOptions(),
+      // bottomNavigationBar: const NavOptions(),
+      bottomNavigationBar: Material(
+        elevation: 10,
+        child: BottomAppBar(
+          // color: Colors.blue,
+          notchMargin: 10.0,
+          shape: CircularNotchedRectangle(),
+          child: NavOptions(),
+        ),
+      ),
     );
   }
 }
@@ -53,81 +63,59 @@ class NavOptions extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
     final notifier = ref.watch(navProvider.notifier);
     final selectedNav = ref.watch(navProvider);
-    final Size size = MediaQuery.of(context).size;
 
-    return Stack(
-      alignment: AlignmentDirectional.bottomCenter,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        CustomPaint(
-          size: Size(size.width, 80),
-          painter: BNBCustomPainter(),
+        NavIcon(
+          onPress: () => notifier.setOption = NavOption.home,
+          iconPath: 'assets/icons/home.svg',
+          isSelected: selectedNav == NavOption.home,
+          iconSize: 38,
         ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 10.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              IconButton(
-                onPressed: () => notifier.setOption = NavOption.home,
-                icon: Icon(
-                  FontAwesomeIcons.house,
-                  color: selectedNav == NavOption.home ? Colors.pink : null,
-                ),
-              ),
-              IconButton(
-                onPressed: () => notifier.setOption = NavOption.settings,
-                icon: Icon(
-                  FontAwesomeIcons.stethoscope,
-                  color: selectedNav == NavOption.settings ? Colors.pink : null,
-                ),
-              ),
-              const Gap(30),
-              IconButton(
-                onPressed: () => notifier.setOption = NavOption.cart,
-                icon: Icon(
-                  FontAwesomeIcons.cartShopping,
-                  color: selectedNav == NavOption.cart ? Colors.pink : null,
-                ),
-              ),
-              IconButton(
-                onPressed: () => notifier.setOption = NavOption.user,
-                icon: Icon(
-                  FontAwesomeIcons.user,
-                  color: selectedNav == NavOption.user ? Colors.pink : null,
-                ),
-              ),
-            ],
-          ),
+        NavIcon(
+          onPress: () => notifier.setOption = NavOption.settings,
+          iconPath: 'assets/icons/grid.svg',
+          isSelected: selectedNav == NavOption.settings,
+        ),
+        const Gap(30),
+        NavIcon(
+          onPress: () => notifier.setOption = NavOption.cart,
+          iconPath: 'assets/icons/cart.svg',
+          isSelected: selectedNav == NavOption.cart,
+        ),
+        NavIcon(
+          onPress: () => notifier.setOption = NavOption.user,
+          iconPath: 'assets/icons/user_outline.svg',
+          isSelected: selectedNav == NavOption.user,
         ),
       ],
     );
   }
 }
 
-class BNBCustomPainter extends CustomPainter {
+class NavIcon extends StatelessWidget {
+  const NavIcon({
+    super.key,
+    this.iconPath,
+    this.isSelected,
+    this.onPress,
+    this.iconSize = 30,
+  });
+  final String? iconPath;
+  final bool? isSelected;
+  final VoidCallback? onPress;
+  final double? iconSize;
   @override
-  void paint(Canvas canvas, Size size) {
-    Paint paint = Paint()
-      ..color = Colors.white
-      ..style = PaintingStyle.fill;
-
-    Path path = Path();
-    path.moveTo(0, 20);
-    path.quadraticBezierTo(size.width * 0.20, 0, size.width * 0.35, 0);
-    path.quadraticBezierTo(size.width * 0.40, 0, size.width * 0.40, 20);
-    path.arcToPoint(Offset(size.width * 0.60, 20),
-        radius: const Radius.circular(20.0), clockwise: false);
-    path.quadraticBezierTo(size.width * 0.60, 0, size.width * 0.65, 0);
-    path.quadraticBezierTo(size.width * 0.80, 0, size.width, 20);
-    path.lineTo(size.width, size.height);
-    path.lineTo(0, size.height);
-    path.lineTo(0, 20);
-    canvas.drawShadow(path, Colors.black, 5, true);
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: onPress,
+      icon: SvgPicture.asset(
+        iconPath!,
+        height: iconSize,
+        // ignore: deprecated_member_use
+        color: isSelected! ? Colors.pink : Colors.blueGrey,
+      ),
+    );
   }
 }

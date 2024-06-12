@@ -26,7 +26,7 @@ class GradiantIconButton extends StatelessWidget {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Colors.deepOrangeAccent,
+              Colors.orange,
               Colors.red,
             ],
           ),
