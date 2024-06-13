@@ -37,10 +37,12 @@ class UserSetting extends ConsumerWidget {
                     backgroundImage: image != null
                         ? Image.file(image, fit: BoxFit.cover).image
                         : null,
-                    child: SvgPicture.asset(
-                      'assets/icons/user_outline.svg',
-                      height: 40,
-                    ),
+                    child: image == null
+                        ? SvgPicture.asset(
+                            'assets/icons/user_outline.svg',
+                            height: 40,
+                          )
+                        : null,
                   ),
                 ),
               ),
