@@ -1,16 +1,15 @@
-import 'dart:convert';
-
 import 'package:dokan/src/components/gradient.button.dart';
-import 'package:dokan/src/model/product.dart';
+import 'package:dokan/src/extensions/extensions.dart';
 import 'package:dokan/src/modules/home/providers/nav.bar.provider.dart';
 import 'package:dokan/src/modules/home/view/components/product.list.dart';
 import 'package:dokan/src/modules/user/view/user.setting.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
+
+import 'components/nav.icon.dart';
 
 class AppHome extends ConsumerWidget {
   const AppHome({super.key});
@@ -22,9 +21,9 @@ class AppHome extends ConsumerWidget {
       case NavOption.home:
         body = const ProductList();
       case NavOption.settings:
-        body = const SizedBox();
+        body = const NoImplementationWidget(title: 'Settings');
       case NavOption.cart:
-        body = const SizedBox();
+        body = const NoImplementationWidget(title: 'Cart');
       case NavOption.user:
         body = const UserSetting();
     }
@@ -33,17 +32,10 @@ class AppHome extends ConsumerWidget {
       floatingActionButton: GradiantIconButton(
         iconData: FontAwesomeIcons.magnifyingGlass,
         size: 60,
-        onPressed: () async {
-          final jsonString =
-              await rootBundle.loadString('assets/response.json');
-          final jsonData = jsonDecode(jsonString) as List;
-          final products = jsonData.map((e) => Product.fromMap(e)).toList();
-          print(products.length);
-        },
+        onPressed: () {},
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      // bottomNavigationBar: const NavOptions(),
-      bottomNavigationBar: Material(
+      bottomNavigationBar: const Material(
         elevation: 10,
         child: BottomAppBar(
           // color: Colors.blue,
@@ -56,65 +48,36 @@ class AppHome extends ConsumerWidget {
   }
 }
 
-class NavOptions extends ConsumerWidget {
-  const NavOptions({super.key});
+class NoImplementationWidget extends StatelessWidget {
+  const NoImplementationWidget({super.key, this.title});
+  final String? title;
 
-  @override
-  Widget build(BuildContext context, ref) {
-    final notifier = ref.watch(navProvider.notifier);
-    final selectedNav = ref.watch(navProvider);
-
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        NavIcon(
-          onPress: () => notifier.setOption = NavOption.home,
-          iconPath: 'assets/icons/home.svg',
-          isSelected: selectedNav == NavOption.home,
-          iconSize: 38,
-        ),
-        NavIcon(
-          onPress: () => notifier.setOption = NavOption.settings,
-          iconPath: 'assets/icons/grid.svg',
-          isSelected: selectedNav == NavOption.settings,
-        ),
-        const Gap(30),
-        NavIcon(
-          onPress: () => notifier.setOption = NavOption.cart,
-          iconPath: 'assets/icons/cart.svg',
-          isSelected: selectedNav == NavOption.cart,
-        ),
-        NavIcon(
-          onPress: () => notifier.setOption = NavOption.user,
-          iconPath: 'assets/icons/user_outline.svg',
-          isSelected: selectedNav == NavOption.user,
-        ),
-      ],
-    );
-  }
-}
-
-class NavIcon extends StatelessWidget {
-  const NavIcon({
-    super.key,
-    this.iconPath,
-    this.isSelected,
-    this.onPress,
-    this.iconSize = 30,
-  });
-  final String? iconPath;
-  final bool? isSelected;
-  final VoidCallback? onPress;
-  final double? iconSize;
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: onPress,
-      icon: SvgPicture.asset(
-        iconPath!,
-        height: iconSize,
-        // ignore: deprecated_member_use
-        color: isSelected! ? Colors.pink : Colors.blueGrey,
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          title ?? '',
+          style: context.text.titleLarge!.copyWith(fontWeight: FontWeight.bold),
+        ),
+        automaticallyImplyLeading: false,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SvgPicture.asset(
+              'assets/icons/undraw.svg',
+              height: 200,
+            ),
+            const Gap(60),
+            Text(
+              'Not Implementated',
+              style: context.text.titleLarge,
+            ),
+          ],
+        ),
       ),
     );
   }

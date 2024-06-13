@@ -1,0 +1,8 @@
+POST http://apptest.dokandemo.com/wp-json/wp/v2/users/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "mj.anas123",
+    "email": "anasmj7@gmail.com",
+    "password": "anas1234"
+}

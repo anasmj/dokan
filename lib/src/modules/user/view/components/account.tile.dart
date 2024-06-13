@@ -1,6 +1,9 @@
+import 'package:dokan/src/extensions/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
+
+final _accountTileController = ExpansionTileController();
 
 class AccountTile extends StatelessWidget {
   const AccountTile({super.key});
@@ -8,6 +11,7 @@ class AccountTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
+      controller: _accountTileController,
       expandedCrossAxisAlignment: CrossAxisAlignment.start,
       leading: const Icon(FontAwesomeIcons.user),
       title: const Text('Account'),
@@ -50,7 +54,7 @@ class AccountTile extends StatelessWidget {
                   ),
                   // maximumSize: const Size.fromHeight(30),
                 ),
-                onPressed: () {},
+                onPressed: () => _accountTileController.collapse(),
                 child: const Text('Cancel'),
               ),
               FilledButton(
@@ -60,7 +64,7 @@ class AccountTile extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () => context.showSnack('Can not update user'),
                 child: const Text('Save'),
               ),
             ],

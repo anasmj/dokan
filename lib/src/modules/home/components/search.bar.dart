@@ -14,12 +14,17 @@ class AppSearchBar extends StatelessWidget {
       decoration: InputDecoration(
         hintText: 'Filter',
         contentPadding: const EdgeInsets.only(top: 12),
-        prefixIcon: const RotatedBox(
-          quarterTurns: 3,
-          child: Icon(
-            FontAwesomeIcons.sliders,
-            size: 18,
-            color: Colors.grey,
+        prefixIcon: IconButton(
+          icon: const RotatedBox(
+            quarterTurns: 3,
+            child: Icon(
+              FontAwesomeIcons.sliders,
+              size: 18,
+              color: Colors.grey,
+            ),
+          ),
+          onPressed: () => context.showBottomModal(
+            const ProductFilterOptionWidget(),
           ),
         ),
         suffixIcon: Row(
@@ -31,8 +36,9 @@ class AppSearchBar extends StatelessWidget {
               style: IconButton.styleFrom(
                 padding: EdgeInsets.zero,
               ),
-              onPressed: () async =>
-                  context.showBottomModal(const ProductFilterOptionWidget(),),
+              onPressed: () async => context.showBottomModal(
+                const ProductFilterOptionWidget(),
+              ),
               icon: const Icon(Icons.keyboard_arrow_down),
             ),
             const Icon(

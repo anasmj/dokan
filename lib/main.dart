@@ -20,7 +20,6 @@ class MainApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: lightTheme,
         home: const DokanApp(),
-        // home: const AppHome(),
       ),
     );
   }

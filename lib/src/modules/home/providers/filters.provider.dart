@@ -16,7 +16,6 @@ class FiltersProvider extends Notifier<List<Filter>> {
       state = [...state, f];
     }
     if (f != Filter.bestSelling) _replaceDuplicateWithUpdated(f);
-    print(state);
   }
 
   void _replaceDuplicateWithUpdated(Filter f) {

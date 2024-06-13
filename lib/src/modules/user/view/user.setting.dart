@@ -1,24 +1,49 @@
 import 'package:dokan/src/extensions/extensions.dart';
+import 'package:dokan/src/modules/auth/provider/file.provider.dart';
 import 'package:dokan/src/modules/user/view/components/account.tile.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 
-class UserSetting extends StatelessWidget {
+class UserSetting extends ConsumerWidget {
   const UserSetting({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final image = ref.watch(fileProvider('update'));
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          'My Account',
+          style: context.text.titleLarge!.copyWith(fontWeight: FontWeight.bold),
+        ),
+      ),
       body: Center(
         child: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Gap(80),
-              Text('My Account', style: context.text.titleLarge),
-              const Gap(30),
-              const CircleAvatar(radius: 56),
+              Material(
+                elevation: 5,
+                borderRadius: BorderRadius.circular(50),
+                child: InkWell(
+                  onTap: ref.read(fileProvider('update').notifier).pickFile,
+                  splashColor: Colors.transparent,
+                  child: CircleAvatar(
+                    radius: 50,
+                    backgroundColor: Colors.white,
+                    backgroundImage: image != null
+                        ? Image.file(image, fit: BoxFit.cover).image
+                        : null,
+                    child: SvgPicture.asset(
+                      'assets/icons/user_outline.svg',
+                      height: 40,
+                    ),
+                  ),
+                ),
+              ),
               const Gap(30),
               Text(
                 'Jhon Smith',
@@ -59,7 +84,7 @@ class UserSetting extends StatelessWidget {
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),

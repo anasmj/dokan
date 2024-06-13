@@ -4,6 +4,7 @@ import 'package:dokan/src/modules/auth/components/auth.button.dart';
 import 'package:dokan/src/modules/auth/components/auth.options.dart';
 import 'package:dokan/src/modules/auth/model/user.dart';
 import 'package:dokan/src/modules/auth/provider/auth.type.provider.dart';
+import 'package:dokan/src/modules/auth/provider/new.user.provider.dart';
 import 'package:dokan/src/modules/auth/provider/user.provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -58,7 +59,15 @@ class SignInBody extends ConsumerWidget {
         const Gap(30),
         AuthButton(
           label: 'Login',
-          onPressed: () => ref.read(userProvider.notifier).update = User(),
+          onPressed: () {
+            ref.read(userProvider.notifier).update = User();
+            // final newUser = ref.read(newUserProvider);
+            // if (newUser == null) {
+            //   context.showSnack('Please try to register first');
+            // } else {
+            //   ref.read(userProvider.notifier).update = newUser;
+            // }
+          },
         ),
         const Gap(50),
         const AuthOptoins(),
@@ -67,9 +76,11 @@ class SignInBody extends ConsumerWidget {
           child: TextButton(
             style: TextButton.styleFrom(
               padding: EdgeInsets.zero,
-              // padding: EdgeInsets.symmetric(horizontal: 10),
             ),
-            onPressed: ref.read(authTypeProvider.notifier).toggle,
+            onPressed: () {
+              ref.read(newUserProvider.notifier).update = User();
+              ref.read(authTypeProvider.notifier).toggle();
+            },
             child: const Text(
               'Create New Account',
               style: TextStyle(color: Colors.grey),

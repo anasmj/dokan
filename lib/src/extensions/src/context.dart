@@ -20,6 +20,9 @@ extension ContextExt on BuildContext {
         context: this,
         builder: (_) => body,
       );
+  Future showSnack(String? msg) async => ScaffoldMessenger.of(this)
+      .showSnackBar(SnackBar(content: Text(msg ?? '')));
+      
   double get width => MediaQuery.of(this).size.width;
   double get height => MediaQuery.of(this).size.height;
 }

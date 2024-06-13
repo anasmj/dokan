@@ -34,7 +34,7 @@ class GradiantIconButton extends StatelessWidget {
         child: Icon(
           iconData,
           color: Colors.white,
-          size: 18,
+          size: 20,
         ),
       ),
     );

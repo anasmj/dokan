@@ -158,7 +158,7 @@ class FilterCheckbox extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(3),
               ),
-              side: BorderSide(color: Colors.pink),
+              side: const BorderSide(color: Colors.pink),
               activeColor: Colors.pink.shade300,
               value: selected,
               onChanged: onChanged,

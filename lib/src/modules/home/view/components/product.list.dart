@@ -16,8 +16,9 @@ class ProductList extends ConsumerWidget {
         SliverAppBar(
           title: Text(
             'Product List',
-            style:
-                context.text.titleLarge!.copyWith(fontWeight: FontWeight.bold),
+            style: context.text.titleLarge!.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
           ),
           centerTitle: true,
           actions: [
@@ -40,7 +41,6 @@ class ProductList extends ConsumerWidget {
       ],
       body: ref.watch(productsProvider).when(
             data: (products) {
-              print(products.length);
               return GridView.builder(
                 itemCount: products.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -55,7 +55,6 @@ class ProductList extends ConsumerWidget {
               );
             },
             error: (e, s) {
-              print(e);
               return const SizedBox(
                 child: Text('Error'),
               );
