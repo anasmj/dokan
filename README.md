@@ -5,7 +5,7 @@
 &ensp;&thinsp;&ensp;&thinsp;❌ Update <br>
 &ensp;&thinsp;&ensp;&thinsp;❌ iOS<br>
 ## Done
-&ensp;&thinsp;&ensp;&thinsp;✅ Splash Screen <br> 
+&ensp;&thinsp;&ensp;&thinsp;✅ Splash Screen & app icon (android, ios) <br> 
 &ensp;&thinsp;&ensp;&thinsp;✅ Auth Api <br>
 &ensp;&thinsp;&ensp;&thinsp;✅ Registration Api <br>
 &ensp;&thinsp;&ensp;&thinsp;✅ showing Data from Response.json <br>
@@ -15,4 +15,9 @@
 &ensp;&thinsp;&ensp;&thinsp;✅ Price hing < low<br>
 &ensp;&thinsp;&ensp;&thinsp;✅ best selling <br>
 
-![WhatsApp Image 2024-06-14 at 6 25 10 PM (7)](https://github.com/anasmj/dokan/assets/48752942/4e11b36e-b61e-41e0-93bb-b740145bcb1e width="500" )
+## App apk file link [Andoid](https://github.com/anasmj/dokan/tree/main/release_apk)
+
+## Screenshots
+
+<img src="/app_images/login.jpeg" height="300"> <img src="/app_images/signUp.jpeg" height="300">  <img src="/app_images/home.jpeg" height="300">  <img src="/app_images/filter.jpeg" height="300">  <img src="/app_images/profile.jpeg" height="300">  <img src="/app_images/updateProfile.jpeg" height="300">
+ 
