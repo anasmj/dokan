@@ -39,4 +39,3 @@ class FiltersProvider extends Notifier<List<Filter>> {
   }
 }
 
-final isFilterAppliedProvider = StateProvider((ref) => false);

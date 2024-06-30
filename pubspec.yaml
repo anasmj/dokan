@@ -7,7 +7,6 @@ environment:
   sdk: '>=3.4.1 <4.0.0'
 
 dependencies:
-  build_runner: ^2.4.11
   cached_network_image: ^3.3.1
   file_picker: ^8.0.5
   flutter:
@@ -20,11 +19,15 @@ dependencies:
   flutter_launcher_icons: ^0.13.1
   flutter_native_splash:  ^2.4.0
   logger: ^2.3.0
+  riverpod_annotation: ^2.3.5
+  riverpod_generator: ^2.4.0
+  build_runner: ^2.4.11
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
+  flutter_gen_runner:
 
 flutter_launcher_icons:
   android: "launcher_icon"
@@ -47,4 +50,8 @@ flutter:
   uses-material-design: true
   assets:
     - assets/response.json
-    - assets/icons/
+    - assets/png/
+    - assets/svg/
+flutter_gen:
+  output: lib/src/gen/
+   

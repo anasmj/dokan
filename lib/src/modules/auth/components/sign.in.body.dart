@@ -1,3 +1,4 @@
+import 'package:dokan/src/gen/assets.gen.dart';
 import 'package:dokan/src/extensions/extensions.dart';
 import 'package:dokan/src/modules/auth/components/Icon.text.field.dart';
 import 'package:dokan/src/modules/auth/components/auth.button.dart';
@@ -20,10 +21,7 @@ class SignInBody extends ConsumerWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Gap(200),
-        SvgPicture.asset(
-          'assets/icons/dokan.svg',
-          height: 40,
-        ),
+        SvgPicture.asset(Assets.svg.dokan, height: 40),
         const Gap(80),
         Text(
           'Sign in',

@@ -1,3 +1,4 @@
+import 'package:dokan/src/gen/assets.gen.dart';
 import 'package:dokan/src/components/gradient.button.dart';
 import 'package:dokan/src/extensions/extensions.dart';
 import 'package:dokan/src/modules/home/providers/nav.bar.provider.dart';
@@ -68,7 +69,7 @@ class NoImplementationWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SvgPicture.asset(
-              'assets/icons/undraw.svg',
+              Assets.svg.undraw,
               height: 200,
             ),
             const Gap(60),

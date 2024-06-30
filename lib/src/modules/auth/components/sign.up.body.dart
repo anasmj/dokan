@@ -1,3 +1,4 @@
+import 'package:dokan/src/gen/assets.gen.dart';
 import 'package:dokan/src/components/gradient.button.dart';
 import 'package:dokan/src/extensions/extensions.dart';
 import 'package:dokan/src/modules/auth/components/Icon.text.field.dart';
@@ -119,7 +120,7 @@ class ProfileButton extends ConsumerWidget {
                   : null,
               child: selectedFile == null
                   ? SvgPicture.asset(
-                      'assets/icons/user_outline.svg',
+                      Assets.svg.userOutline,
                       height: 40,
                     )
                   : null,

@@ -1,5 +1,6 @@
 import 'package:dokan/src/extensions/extensions.dart';
 import 'package:dokan/src/modules/home/providers/filters.provider.dart';
+import 'package:dokan/src/modules/home/providers/home.providers.dart';
 import 'package:dokan/src/modules/home/providers/product.provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

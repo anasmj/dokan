@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:dokan/src/gen/assets.gen.dart';
 
 class AuthOptoins extends StatelessWidget {
   const AuthOptoins({super.key});
@@ -24,7 +25,7 @@ class AuthOptoins extends StatelessWidget {
             onPressed: () {},
             icon: SvgPicture.asset(
               fit: BoxFit.cover,
-              'assets/icons/facebook.svg',
+              Assets.svg.facebook,
               height: 30,
             ),
           ),
@@ -40,7 +41,7 @@ class AuthOptoins extends StatelessWidget {
             onPressed: () {},
             icon: SvgPicture.asset(
               fit: BoxFit.cover,
-              'assets/icons/google.svg',
+              Assets.svg.google,
               height: 30,
             ),
           ),

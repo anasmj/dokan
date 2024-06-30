@@ -1,3 +1,4 @@
+import 'package:dokan/src/gen/assets.gen.dart';
 import 'package:dokan/src/modules/home/providers/nav.bar.provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,24 +18,24 @@ class NavOptions extends ConsumerWidget {
       children: [
         _NavIcon(
           onPress: () => notifier.setOption = NavOption.home,
-          iconPath: 'assets/icons/home.svg',
+          iconPath: Assets.svg.home,
           isSelected: selectedNav == NavOption.home,
           iconSize: 38,
         ),
         _NavIcon(
           onPress: () => notifier.setOption = NavOption.settings,
-          iconPath: 'assets/icons/grid.svg',
+          iconPath: Assets.svg.grid,
           isSelected: selectedNav == NavOption.settings,
         ),
         const Gap(30),
         _NavIcon(
           onPress: () => notifier.setOption = NavOption.cart,
-          iconPath: 'assets/icons/cart.svg',
+          iconPath: Assets.svg.cart,
           isSelected: selectedNav == NavOption.cart,
         ),
         _NavIcon(
           onPress: () => notifier.setOption = NavOption.user,
-          iconPath: 'assets/icons/user_outline.svg',
+          iconPath: Assets.svg.userOutline,
           isSelected: selectedNav == NavOption.user,
         ),
       ],
